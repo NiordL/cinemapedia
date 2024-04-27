@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class MovieScreen extends StatelessWidget {
-  static const name = 'movie_screen';
+class MovieScreen extends StatefulWidget {
+  static const name = 'movie-screen';
 
   final String movieId;
 
@@ -11,10 +11,25 @@ class MovieScreen extends StatelessWidget {
   });
 
   @override
+  State<MovieScreen> createState() => _MovieScreenState();
+}
+
+class _MovieScreenState extends State<MovieScreen> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    
+  }
+
+
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('MovieID $movieId'),
+        title: Text('MovieID ${widget.movieId}'),
       ),
     );
   }
