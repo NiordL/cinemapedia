@@ -26,7 +26,9 @@ typedef SearchMoviesCallback = Future<List<Movie>> Function(String query);
 class SearchMoviesNotifier extends StateNotifier<List<Movie>> {
 
   final SearchMoviesCallback searchMovies;
+
   final Ref ref;
+
 
 
   SearchMoviesNotifier({
