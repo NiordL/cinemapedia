@@ -193,7 +193,6 @@ class _ActorsByMovie extends ConsumerWidget {
       ),
     );
 
-    return const Placeholder();
   }
 }
 
