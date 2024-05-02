@@ -1,53 +1,38 @@
-
-import 'package:cinemapedia/presentation/views/views.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:cinemapedia/presentation/screens/screens.dart';
 
 final appRouter = GoRouter(
-  initialLocation: '/',
+  initialLocation: '/home/0',
   routes: [
-    // IMPLEMENTAR
-    //StatefulShellRoute(branches: branches, navigatorContainerBuilder: navigatorContainerBuilder)
-    ShellRoute(
-      builder: (context, state, child) {
-        return HomeScreen(childView: child);
+    
+    GoRoute(
+      path: '/home/:page',
+      name: HomeScreen.name,
+      builder: (context, state) {
+        final pageIndex = ( state.pathParameters['page'] ?? 0 ).toString();
+
+        return HomeScreen( pageIndex: int.parse(pageIndex) );
       },
       routes: [
-        GoRoute(
-          path: '/',
+         GoRoute(
+          path: 'movie/:id',
+          name: MovieScreen.name,
           builder: (context, state) {
-            return const HomeView();
-          },
-          routes: [
-                GoRoute(
-                  path: 'movie/:id',
-                  name: MovieScreen.name,
-                  builder: (context, state) {
-                    final movieId = state.pathParameters['id'] ?? 'no-id';
+            final movieId = state.pathParameters['id'] ?? 'no-id';
 
-                  return MovieScreen(movieId: movieId,);
-                  },
-                ),
-              ]
-            ),
-        GoRoute(
-          path: '/favorites',
-          builder: (context, state) {
-            return const FavouritesView();
-          } 
+            return MovieScreen( movieId: movieId );
+          },
         ),
       ]
-    )
-    
-
-    /*rutas Padre/hijo
-    
-      ]
     ),
-    */
 
 
+
+    GoRoute(
+      path: '/',
+      redirect: ( _ , __ ) => '/home/0',
+    ),
 
   ]
 );

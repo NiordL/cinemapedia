@@ -25,30 +25,44 @@ class MovieHorizontalListview extends StatefulWidget {
 }
 
 class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
+
+
   final scrollController = ScrollController();
+
   @override
   void initState() {
     super.initState();
+    
     scrollController.addListener(() {
       if ( widget.loadNextPage == null ) return;
+
       if ( (scrollController.position.pixels + 200) >= scrollController.position.maxScrollExtent ) {
         widget.loadNextPage!();
       }
+
     });
+
   }
+
   @override
   void dispose() {
     scrollController.dispose();
     super.dispose();
   }
+
+
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 350,
       child: Column(
         children: [
+
           if ( widget.title != null || widget.subTitle != null )
             _Title(title: widget.title, subTitle: widget.subTitle ),
+
+
           Expanded(
             child: ListView.builder(
               controller: scrollController,
@@ -60,11 +74,13 @@ class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
               },
             )
           )
+
         ],
       ),
     );
   }
 }
+
 
 class _Slide extends StatelessWidget {
 
@@ -100,7 +116,7 @@ class _Slide extends StatelessWidget {
                     );
                   }
                   return GestureDetector(
-                    onTap: () => context.push('/movie/${movie.id}'),
+                    onTap: () => context.push('/home/0/movie/${ movie.id }'),
                     child: FadeIn(child: child),
                   );
                   
