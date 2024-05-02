@@ -32,7 +32,7 @@ final appRouter = GoRouter(
               ]
             ),
         GoRoute(
-          path: '/favourites',
+          path: '/favorites',
           builder: (context, state) {
             return const FavouritesView();
           } 
